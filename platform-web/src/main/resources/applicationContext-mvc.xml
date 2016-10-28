@@ -1,55 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-        http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context-3.0.xsd
-        http://www.springframework.org/schema/mvc
-		http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd 
-		http://www.springframework.org/schema/aop  
-        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
-     
-	<context:component-scan base-package="base.controller,springMVC.controller" />
-	
-	<!-- <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"
-		p:messageConverters-ref="messageConverters" /> -->
-	
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:prefix="/WEB-INF/pages/"
-		p:suffix=".jsp">
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:oxm="http://www.springframework.org/schema/oxm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd 
+		http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<mvc:annotation-driven />
+	<context:component-scan base-package="web" />
+
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"
+		p:messageConverters-ref="messageConverters" />
+
+	<!-- HttpMessageConverter start -->
+	<util:list id="messageConverters">
+		<bean class="org.springframework.http.converter.BufferedImageHttpMessageConverter" />
+		<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+		<bean class="org.springframework.http.converter.StringHttpMessageConverter" />
+		<bean class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter" />
+		<bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter"
+			p:marshaller-ref="xmlMarshaller" p:unmarshaller-ref="xmlMarshaller">
+		</bean>
+		<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+	</util:list>
+
+	<bean id="xmlMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
+		<property name="streamDriver">
+			<bean class="com.thoughtworks.xstream.io.xml.StaxDriver" />
+		</property>
+		<property name="annotatedClasses">
+			<list>
+				<value></value>
+			</list>
+		</property>
 	</bean>
+	<!-- HttpMessageConverter end -->
 	
-	<!-- <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">  
-        <property name="maxIdle" value="${redis.maxIdle}" />  
-        <property name="maxActive" value="${redis.maxActive}" />  
-        <property name="maxWait" value="${redis.maxWait}" />  
-        <property name="testOnBorrow" value="${redis.testOnBorrow}" />  
-    </bean> -->
-    
-    <!-- <bean id="producerClient" class="com.feiniu.kafka.client.ProducerClient">
-		<constructor-arg index="0" value="${zookeeper.connect}" />
-		<constructor-arg index="1">
-			<props>
-				<prop key="key.serializer.class">kafka.serializer.StringEncoder</prop>
-				<prop key="serializer.class">com.feiniu.fcm.core.mq.serializer.SendMessagePoAvroEncoder
-				</prop>
-				<prop key="request.required.acks">${request.required.acks}</prop>
-				<prop key="zookeeper.connection.timeout.ms">100000</prop>
-				<prop key="producer.type">async</prop>
-				<prop key="batch.num.messages">500</prop>
-			</props>
-		</constructor-arg>
-	</bean> -->
-    
-    <!-- <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"  
-        p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}"  p:pool-config-ref="poolConfig"/>  
-      
-    <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">  
-        <property name="connectionFactory"   ref="connectionFactory" />  
-    </bean> -->
+	<!-- 视图解析器 -->
+	 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" 
+		p:prefix="/WEB-INF/pages/" 
+		p:suffix=".jsp"> 
+	</bean> 
+
+	<!-- <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig"> 
+		<property name="maxIdle" value="${redis.maxIdle}" /> <property name="maxActive" 
+		value="${redis.maxActive}" /> <property name="maxWait" value="${redis.maxWait}" 
+		/> <property name="testOnBorrow" value="${redis.testOnBorrow}" /> </bean> -->
+
+	<!-- <bean id="producerClient" class="com.feiniu.kafka.client.ProducerClient"> 
+		<constructor-arg index="0" value="${zookeeper.connect}" /> <constructor-arg 
+		index="1"> <props> <prop key="key.serializer.class">kafka.serializer.StringEncoder</prop> 
+		<prop key="serializer.class">com.feiniu.fcm.core.mq.serializer.SendMessagePoAvroEncoder 
+		</prop> <prop key="request.required.acks">${request.required.acks}</prop> 
+		<prop key="zookeeper.connection.timeout.ms">100000</prop> <prop key="producer.type">async</prop> 
+		<prop key="batch.num.messages">500</prop> </props> </constructor-arg> </bean> -->
+
+	<!-- <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" 
+		p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}" 
+		p:pool-config-ref="poolConfig"/> <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate"> 
+		<property name="connectionFactory" ref="connectionFactory" /> </bean> -->
 </beans>
