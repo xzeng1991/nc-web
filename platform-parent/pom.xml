@@ -123,6 +123,14 @@
 			</dependency>
 			<!-- DB end -->
 
+			<!-- database start -->
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>1.4.192</version>
+			</dependency>
+			<!-- database end -->
+
 			<!-- log start -->
 			<dependency>
 				<groupId>log4j</groupId>

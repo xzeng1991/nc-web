@@ -1,8 +1,0 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="platform.web">
-    <test name="default">
-        <packages>
-            <package name="com.toucha.platform.web.inclusion.*"></package>
-        </packages>
-    </test>
-</suite>

@@ -16,4 +16,28 @@
                         http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-1.5.xsd
                         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
                         http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.0.xsd">
+	<context:component-scan base-package="service" />
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+		p:sqlSessionFactory-ref="sqlSessionFactory"
+		p:basePackage="repository" />
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" 
+		p:dataSource-ref="dataSource" 
+		p:configLocation="classpath:mybatis-config.xml" 
+		p:mapperLocations="classpath:mappings/*.xml" />
+		
+	<!-- H2 database datasource start -->
+	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<beans:property name="driverClass" value="org.h2.Driver" />
+		<beans:property name="url" value="jdbc:h2:mem:platform;DB_CLOSE_DELAY=-1" />
+		<beans:property name="username" value="sa" />
+		<beans:property name="password" value="sa" />
+	</beans:bean>
+	<!-- 初始化表结构、数据 -->
+	<jdbc:initialize-database data-source="dataSource">
+		<jdbc:script location="classpath:h2/schema.sql" />
+		<jdbc:script location="classpath:h2/import-data.sql" />
+	</jdbc:initialize-database>
+	<!-- H2 database datasource end -->
 </beans:beans>

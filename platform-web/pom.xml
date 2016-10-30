@@ -58,6 +58,14 @@
 		</dependency>
 		<!-- Spring end -->
 
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+		</dependency>
 		<!-- TEST begin -->
 		<!-- testng -->
 		<!-- <dependency> <groupId>org.testng</groupId> <artifactId>testng</artifactId> 
@@ -78,8 +86,10 @@
 		</dependency>
 
 		<!-- database -->
-		<!-- <dependency> <groupId>com.h2database</groupId> <artifactId>h2</artifactId> 
-			</dependency> -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
 		<!-- TEST end -->
 
 		<dependency>

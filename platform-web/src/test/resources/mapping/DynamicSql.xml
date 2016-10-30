@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nc.platform.persistence.repository.DynamicSqlDao">
+	<select id="findActiveBlog" parameterType="Blog" resultType="Blog">
+		select * from Blog where state = 'active'
+		<if test="title != null">
+			and title like #{title}
+		</if>
+		<if test="author != null and author.name != null">
+			and author_name like #{author.name}
+		</if>
+	</select>
+	
+	<select id="findActiveBlogLike" parameterType="Blog" resultType="Blog">
+		select * from Blog where state = 'active'
+		<choose>
+			<when test="title != null">
+				and title like #{title}
+			</when>
+			<when test="author != null and author.name != null">
+				and author_name like #{author.name}
+			</when>
+			<otherwise>
+				and featured = 1
+			</otherwise>
+		</choose>
+	</select>
+	
+	<!-- where 会自动清除and & or 关键字 -->
+	<select id="findActiveBlog" parameterType="Blog" resultType="Blog">
+		select * from Blog 
+		<where>
+			<if test="title != null">
+				and title like #{title}
+			</if>
+			<if test="author != null and author.name != null">
+				and author_name like #{author.name}
+			</if>
+		</where>
+	</select>
+	
+	<update id="updateAuthor" parameterType="Author">
+		update Author
+		<set>
+			<if test="username != null">username = #{username},</if>
+			<if test="password != null">password = #{password},</if>
+			<if test="email != null">email = #{email}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<trim prefix="where" prefixOverrides="and | or">
+	</trim>
+	
+	<trim prefix="set" suffixOverrides=",">
+	</trim>
+	
+	<select id="selectPostIn" resultType="Post">
+		select * from Post where Id in
+		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+	<select id="selectBlogs" parameterType="Blog" resultType="Blog">
+		<bind name="pattern" value="'%' + _parameter.getTitle() + '%'" />
+		select * from Blog where title like #{pattern}
+	</select>
+</mapper>
