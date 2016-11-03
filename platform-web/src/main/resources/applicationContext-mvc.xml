@@ -47,11 +47,6 @@
 		p:suffix=".jsp"> 
 	</bean> 
 
-	<!-- <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig"> 
-		<property name="maxIdle" value="${redis.maxIdle}" /> <property name="maxActive" 
-		value="${redis.maxActive}" /> <property name="maxWait" value="${redis.maxWait}" 
-		/> <property name="testOnBorrow" value="${redis.testOnBorrow}" /> </bean> -->
-
 	<!-- <bean id="producerClient" class="com.feiniu.kafka.client.ProducerClient"> 
 		<constructor-arg index="0" value="${zookeeper.connect}" /> <constructor-arg 
 		index="1"> <props> <prop key="key.serializer.class">kafka.serializer.StringEncoder</prop> 
@@ -60,8 +55,4 @@
 		<prop key="zookeeper.connection.timeout.ms">100000</prop> <prop key="producer.type">async</prop> 
 		<prop key="batch.num.messages">500</prop> </props> </constructor-arg> </bean> -->
 
-	<!-- <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" 
-		p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}" 
-		p:pool-config-ref="poolConfig"/> <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate"> 
-		<property name="connectionFactory" ref="connectionFactory" /> </bean> -->
 </beans>

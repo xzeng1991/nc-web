@@ -15,7 +15,7 @@ import util.LogUtils;
 public class WechatServiceTest extends SpringContextTestCase{
 	@Autowired
 	private WechatService wechatService; 
-	private String accessToken = "K41yHdY7TT8ai750NPcwiVgYpcPxJ__VDEQIyoB7RwHn1EmIDRoSspzpOwqkkyyUwhb7FifyfZkmXu2OoPVYjSE6sKspMQZ_j7RdVDMl--O9Jxtn06ym010BrLEIYGKAQXPjABAWDV";
+	private String accessToken = "Ja7tmMYBE4L9cl7G9SyKeqWtHlpkTLEIFOrcCT2589Ytu9N8V_kom4F8pSXVnD0IGVsid2r04S8Z4_SN6jMB4M6Yh7w7WSbqGnLBBcgcd7cQPGgACAHGX";
 	
 	@Test
 	public void testAccessToken(){

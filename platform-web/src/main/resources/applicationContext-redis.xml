@@ -16,11 +16,29 @@
                         http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-1.5.xsd
                         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
                         http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.0.xsd">
+	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxIdle" value="${redis.maxIdle}" />
+		<property name="maxWaitMillis" value="${redis.maxWait}" />
+		<property name="testOnBorrow" value="${redis.testOnBorrow}" />
+	</bean>
+
 	<bean id="jedisConnFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-		p:use-pool="true" />
+		p:host-name="${redis.host}" 
+		p:port="${redis.port}" 
+		p:password="${redis.pass}"
+		p:pool-config-ref="poolConfig" />
 
 	<!-- redis template definition -->
-	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
-		p:connection-factory-ref="jedisConnFactory" />
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnFactory" />
+		<property name="defaultSerializer">  
+        	<bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>  
+    	</property>
+	</bean>
 
+	<bean id="genericToStringSerializer" class="org.springframework.data.redis.serializer.GenericToStringSerializer">
+	<constructor-arg>
+		<value>java.lang.Long</value>
+	</constructor-arg>
+</bean>  
 </beans:beans>

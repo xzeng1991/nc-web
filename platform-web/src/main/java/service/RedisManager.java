@@ -25,17 +25,17 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RedisManager {
-	@Autowired
+	//@Autowired
 	private RedisTemplate<String, String> redisOps;
 	@Resource(name = "redisTemplate")
 	private ValueOperations<String, String> valueOps;
-	@Resource(name = "redisTemplate")
+	//@Resource(name = "redisTemplate")
 	private ListOperations<String, String> listOps;
-	@Resource(name = "redisTemplate")
+	//@Resource(name = "redisTemplate")
 	private SetOperations<String, String> setOps;
-	@Resource(name = "redisTemplate")
+	//@Resource(name = "redisTemplate")
 	private HashOperations<String, String, String> hashOps;
-	@Resource(name = "redisTemplate")
+	//@Resource(name = "redisTemplate")
 	private ZSetOperations<String, String> zSetOps;
 
 	private final String LOCK_KEY_PREFIX = "lock:";
@@ -57,6 +57,10 @@ public class RedisManager {
 	// hash value 加值
 	public long increment(String hashKey, String key, long count) {
 		return hashOps.increment(hashKey, key, count);
+	}
+	
+	public void addStringData(String strKey, String value){
+		valueOps.set(strKey, value);
 	}
 
 	public long addSetData(String setKey, String value) {
