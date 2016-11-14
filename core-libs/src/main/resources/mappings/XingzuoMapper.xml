@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="db.dao.XingzuoDao">
+	
+	<resultMap id="xzResultMap" type="XingzuoInfo">
+		<id property="id" column="id" />
+		<result property="xzName" column="xz_name" />
+		<result property="xzInfo" column="xz_info" />
+		<result property="xzStartTime" column="xz_start_time" />
+		<result property="xzEndTime" column="xz_end_time" />
+		<result property="createTime" column="create_time" />
+		<result property="createUser" column="create_user" />
+		<result property="modifyTime" column="modify_time" />
+		<result property="modifyUser" column="modify_user" />
+	</resultMap>
+	
+	<sql id="xzColumns">id, xz_name, xz_info, xz_start_time, xz_end_time, create_time, create_user, modify_time, modify_user</sql>
+	
+	<update id="update" parameterType="XingzuoInfo">
+		UPDATE t_xingzuo
+		<set>
+			<if test="xzInfo != null">xz_info = #{xzInfo},</if>
+			<if test="xzStartTime != null">xz_start_time = #{xzStartTime},</if>
+			<if test="xzEndTime != null">xz_end_time = #{xzEndTime}</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+	
+	<select id="findOne" parameterType="int" resultMap="xzResultMap" >
+		SELECT <include refid="xzColumns" /> FROM t_xingzuo WHERE id = #{id}
+	</select>
+	
+	<select id="loadAll" resultMap="xzResultMap" >
+		SELECT <include refid="xzColumns" /> FROM t_xingzuo 
+	</select>
+	
+	<select id="findList" parameterType="XingzuoInfo" resultMap="xzResultMap" >
+		SELECT <include refid="xzColumns" /> FROM t_xingzuo 
+		<where>
+			<if test="xzName != null">
+				and xz_name like CONCAT('%','${xzName}','%')
+			</if>
+		</where>
+	</select>
+	
+	<select id="findByParams" parameterType="hashmap" resultMap="xzResultMap" >
+		SELECT <include refid="xzColumns" /> FROM t_xingzuo 
+		<where>
+			<if test="xzName != null">
+				AND xz_name LIKE CONCAT('%','${xzName}','%')
+			</if>
+			<if test="birthday != null">
+				<![CDATA[ AND xz_start_time <= #{birthday} AND xz_end_time >= #{birthday} ]]>
+			</if>
+		</where>
+	</select>
+</mapper>

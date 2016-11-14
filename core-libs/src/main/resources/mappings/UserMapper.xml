@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="db.dao.UserDao">
+	
+	<resultMap id="userResultMap" type="UserInfo">
+		<id property="userId" column="user_id" />
+		<result property="userName" column="user_name" />
+		<result property="password" column="password" />
+		<result property="userType" column="user_type" />
+		<result property="locked" column="locked" />
+		<result property="credit" column="credit" />
+		<result property="createTime" column="create_time" />
+		<result property="createUser" column="create_user" />
+		<result property="modifyTime" column="modify_time" />
+		<result property="modifyUser" column="modify_user" />
+	</resultMap>
+	
+	<sql id="userColumns">user_id, user_name, password, user_type, locked, credit, create_time, create_user, modify_time, modify_user</sql>
+	
+	<insert id="save" parameterType="UserInfo">
+        INSERT INTO t_user(user_id, user_name, password, user_type, locked, credit, create_time, create_user, modify_time, modify_user)
+        values(#{userId}, #{userName}, #{password}, #{userType}, #{locked}, 0, CURRENT_TIMESTAMP, #{createUser}, CURRENT_TIMESTAMP, #{createUser})
+	</insert>
+	
+	<delete id="remove" parameterType="UserInfo">
+		DELETE FROM t_user WHERE user_id = #{userId}
+	</delete>
+	
+	<update id="update" parameterType="UserInfo">
+		UPDATE t_user
+		SET user_name = #{userName},
+			password = #{password},
+			user_type = #{userType},
+			locked = #{locked},
+			modify_time = CURRENT_TIMESTAMP,
+			modify_user = #{modifyUser}
+		WHERE user_id = #{userId}
+	</update>
+	
+	<select id="findOne" parameterType="int" resultMap="userResultMap" >
+		SELECT <include refid="userColumns" /> FROM t_user WHERE user_id = #{userId}
+	</select>
+	
+	<select id="findByParams" parameterType="hashmap" resultMap="userResultMap" >
+		SELECT <include refid="userColumns" /> FROM t_user 
+		<where>
+			<if test="userName != null">
+				and user_name = #{userName} 
+			</if>
+			<if test="password != null">
+				and password = #{password} 
+			</if>
+			<if test="locked != null">
+				and locked = #{locked} 
+			</if>
+			<if test="userTypes != null">
+				and user_type in 
+				<foreach collection="userTypes" index="index" item="item" open="(" separator="," close=")">
+            		#{item}
+        		</foreach> 
+			</if>
+		</where>
+	</select>
+	
+</mapper>
