@@ -19,7 +19,7 @@ import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
 import com.thoughtworks.xstream.io.xml.XppDriver;
 
-import model.response.WxTextMessage;
+import model.response.WxResponseBaseMsg;
 
 public class MessageUtil {
 	/**
@@ -63,7 +63,7 @@ public class MessageUtil {
 		return map;
 	}
 	
-	public static String textMessageToXml(WxTextMessage textMessage) {
+	public static String textMessageToXml(WxResponseBaseMsg textMessage) {
         xstream.alias("xml", textMessage.getClass());
         return xstream.toXML(textMessage);
     }

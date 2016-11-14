@@ -10,49 +10,42 @@
 		http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
-
+	<!-- Spring MVC 配置 HttpMessageConverter & conversion-service -->
 	<mvc:annotation-driven />
 	<context:component-scan base-package="web" />
-
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"
-		p:messageConverters-ref="messageConverters" />
-
-	<!-- HttpMessageConverter start -->
-	<util:list id="messageConverters">
-		<bean class="org.springframework.http.converter.BufferedImageHttpMessageConverter" />
-		<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
-		<bean class="org.springframework.http.converter.StringHttpMessageConverter" />
-		<bean class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter" />
-		<bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter"
-			p:marshaller-ref="xmlMarshaller" p:unmarshaller-ref="xmlMarshaller">
-		</bean>
-		<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
-	</util:list>
-
-	<bean id="xmlMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
-		<property name="streamDriver">
-			<bean class="com.thoughtworks.xstream.io.xml.StaxDriver" />
-		</property>
-		<property name="annotatedClasses">
-			<list>
-				<value></value>
-			</list>
+	
+	<mvc:resources mapping="/favicon.ico" location="/favicon.ico" />
+	<mvc:resources mapping="/static/**" location="/static/" />
+	<mvc:resources mapping="/**/*.html" location="/" />
+	
+	<bean id="viewResolver"	class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
+		<property name="prefix" value="" />
+		<property name="suffix" value=".ftl" />
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="exposeSpringMacroHelpers" value="true" />
+		<property name="exposeRequestAttributes" value="true" />
+		<property name="exposeSessionAttributes" value="true" />
+		<property name="requestContextAttribute" value="request" />
+		<property name="cache" value="true" />
+		<property name="order" value="0" />
+	</bean>
+	
+	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="/WEB-INF/template/" />
+		<property name="freemarkerSettings">
+			<bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+				<property name="location" value="classpath:freemarker.properties" />
+			</bean>
 		</property>
 	</bean>
-	<!-- HttpMessageConverter end -->
+	<!-- 拦截器 -->
 	
-	<!-- 视图解析器 -->
-	 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" 
-		p:prefix="/WEB-INF/pages/" 
-		p:suffix=".jsp"> 
-	</bean> 
-
-	<!-- <bean id="producerClient" class="com.feiniu.kafka.client.ProducerClient"> 
-		<constructor-arg index="0" value="${zookeeper.connect}" /> <constructor-arg 
-		index="1"> <props> <prop key="key.serializer.class">kafka.serializer.StringEncoder</prop> 
-		<prop key="serializer.class">com.feiniu.fcm.core.mq.serializer.SendMessagePoAvroEncoder 
-		</prop> <prop key="request.required.acks">${request.required.acks}</prop> 
-		<prop key="zookeeper.connection.timeout.ms">100000</prop> <prop key="producer.type">async</prop> 
-		<prop key="batch.num.messages">500</prop> </props> </constructor-arg> </bean> -->
-
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="web.interceptor.PermissionInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 </beans>

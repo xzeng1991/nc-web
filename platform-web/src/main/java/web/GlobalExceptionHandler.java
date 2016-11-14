@@ -21,8 +21,8 @@ public class GlobalExceptionHandler {
 		return message;
 	}
 
-	@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "IOException occured")
 	@ExceptionHandler(IOException.class)
+	@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "IOException occured")
 	@ResponseBody
 	public void handleIOException() {
 		// returning 404 error code

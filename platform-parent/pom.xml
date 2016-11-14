@@ -6,7 +6,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>platform-parent</name>
-
+	
+	<modules>
+		<module>core-libs</module>
+		<module>platform-web</module>
+	</modules>
+	
 	<properties>
 		<!-- Definition of plugin property -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -77,6 +82,11 @@
 				<artifactId>spring-oxm</artifactId>
 				<version>${springframework.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${springframework.version}</version>
+			</dependency>
 			<!-- Spring end -->
 
 			<!-- Servlet start -->
@@ -120,6 +130,12 @@
 				<groupId>org.mybatis</groupId>
 				<artifactId>mybatis-spring</artifactId>
 				<version>1.2.0</version>
+			</dependency>
+			<!-- c3p0 -->
+			<dependency>
+				<groupId>c3p0</groupId>
+				<artifactId>c3p0</artifactId>
+				<version>0.9.1.2</version>
 			</dependency>
 			<!-- DB end -->
 
@@ -229,7 +245,7 @@
 
 	<build>
 		<finalName>platform-root</finalName>
-		<pluginManagement>
+		<!--pluginManagement>
 			<plugins>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -246,7 +262,7 @@
 					</configuration>
 				</plugin>
 			</plugins>
-		</pluginManagement>
+		</pluginManagement>  -->
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>

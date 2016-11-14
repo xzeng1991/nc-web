@@ -1,5 +1,7 @@
 package model.response;
 
+import util.DateUtils;
+
 public class WxResponseBaseMsg {
 	// 接收方帐号（收到的OpenID）
 	private String ToUserName;
@@ -9,6 +11,16 @@ public class WxResponseBaseMsg {
 	private long CreateTime;
 	// 消息类型（text/music/news）
 	private String MsgType;
+
+	public WxResponseBaseMsg() {
+	}
+
+	public WxResponseBaseMsg(String toUserName, String fromUserName, String msgType) {
+		this.ToUserName = toUserName;
+		this.FromUserName = fromUserName;
+		this.MsgType = msgType;
+		this.CreateTime = DateUtils.getCurrentTimestamp();
+	}
 
 	public String getToUserName() {
 		return ToUserName;
