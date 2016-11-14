@@ -8,5 +8,6 @@
 </head>
 <body>
  	Hello World!
+	<% response.sendRedirect("index"); %>
 </body>
 </html>
