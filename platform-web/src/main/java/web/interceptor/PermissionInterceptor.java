@@ -21,7 +21,7 @@ import web.annotation.PermessionLimit;
 public class PermissionInterceptor extends HandlerInterceptorAdapter {
 	public static final String LOGIN_IDENTITY_KEY = "LOGIN_IDENTITY";
 
-	@Autowired
+	//@Autowired
 	private RedisManager redisManager;
 
 	// 检验用户登陆信息

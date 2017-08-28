@@ -21,11 +21,11 @@ import util.CookieUtil;
 import web.annotation.PermessionLimit;
 import web.interceptor.PermissionInterceptor;
 
-@Controller
+//@Controller
 public class MainController {
 	@Autowired
 	private UserManager userManager;
-	@Autowired
+	//@Autowired
 	private RedisManager redisManager;
 
 	@RequestMapping("/index")

@@ -10,11 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.request.InitWechatRequest;
-import model.response.WxResponseBaseMsg;
-import model.response.WxTextMessage;
 import service.WechatService;
 import util.LogUtils;
 import util.MessageUtil;

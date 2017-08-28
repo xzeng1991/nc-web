@@ -33,7 +33,7 @@ import web.interceptor.PermissionInterceptor;
 public class UserController {
 	@Autowired
 	private UserManager userManager;
-	@Autowired
+	//@Autowired
 	private RedisManager redisManager;
 
 	@RequestMapping

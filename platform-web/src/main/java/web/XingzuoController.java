@@ -17,8 +17,8 @@ import db.model.XingzuoInfo;
 import model.ReturnT;
 import util.LogUtils;
 
-@Controller
-@RequestMapping("/xzinfo")
+//@Controller
+//@RequestMapping("/xzinfo")
 public class XingzuoController {
 	@Autowired
 	private XingzuoManager xzManager;

@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
  * @author xzeng
  *
  */
-@Service
+//@Service
 public class RedisManager {
 	@Autowired
 	private RedisTemplate<String, String> redisOps;
