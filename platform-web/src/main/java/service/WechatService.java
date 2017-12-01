@@ -24,7 +24,7 @@ import util.LogUtils;
 import util.MessageUtil;
 import util.RegexUtils;
 
-@Service
+//@Service
 public class WechatService {
 	@Autowired
 	private XingzuoManager xzManager;

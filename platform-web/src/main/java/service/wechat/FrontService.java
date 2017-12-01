@@ -17,7 +17,7 @@ import constants.WechatConstants;
 import util.HttpClientUtils;
 import util.LogUtils;
 
-@Service
+//@Service
 public class FrontService {
 	// 网页授权的URL
 	public String generateCodeUrl(String appId, String redirectUrl, String scope, String state) throws Exception{

@@ -17,8 +17,8 @@ import util.LogUtils;
 import util.MessageUtil;
 import util.wechat.SignUtil;
 
-@Controller
-@RequestMapping("mapi/v1/we")
+//@Controller
+//@RequestMapping("mapi/v1/we")
 public class WechatController {
 	@Autowired
 	private WechatService wechatService;

@@ -4,11 +4,10 @@
 	<parent>
 		<groupId>shiliukeji.com</groupId>
 		<artifactId>platform-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0.0</version>
 		<relativePath>../platform-parent/</relativePath>
 	</parent>
 	<artifactId>platform-job</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<dependencies>
@@ -72,7 +71,6 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>

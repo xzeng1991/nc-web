@@ -9,8 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 import service.wechat.FrontService;
 import util.LogUtils;
 
-@Controller
-@RequestMapping("front/v1")
+//@Controller
+//@RequestMapping("front/v1")
 public class WechatFrontController {
 	@Autowired
 	private FrontService frontService;

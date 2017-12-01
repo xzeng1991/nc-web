@@ -17,7 +17,7 @@ import db.model.PageResult;
 import db.model.UserInfo;
 import db.model.XingzuoInfo;
 
-@Repository
+//@Repository
 public class UserManager {
 	@Autowired
 	private UserDao userDao;

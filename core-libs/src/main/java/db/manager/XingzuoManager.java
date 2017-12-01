@@ -12,7 +12,7 @@ import db.dao.XingzuoDao;
 import db.model.PageResult;
 import db.model.XingzuoInfo;
 
-@Repository
+//@Repository
 public class XingzuoManager {
 	@Autowired
 	private XingzuoDao xzDao;

@@ -28,7 +28,7 @@ import util.CookieUtil;
 import util.LogUtils;
 import web.interceptor.PermissionInterceptor;
 
-@Controller
+//@Controller
 @RequestMapping("/userInfo")
 public class UserController {
 	@Autowired

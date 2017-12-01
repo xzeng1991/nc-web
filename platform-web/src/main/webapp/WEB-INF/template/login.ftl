@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  	<title>星梦年华</title>
+  	<title>管理</title>
   	<#import "/common/common.macro.ftl" as netCommon>
 	<@netCommon.commonStyle />
     <link rel="stylesheet" href="${request.contextPath}/static/plugins/iCheck/square/blue.css">
@@ -9,11 +9,10 @@
 <body class="hold-transition login-page">
 	<div class="login-box">
 		<div class="login-logo">
-			<a><b>Welcome</b> My Friends</a>
 		</div>
 		<form id="loginForm" method="post" >
 			<div class="login-box-body">
-				<p class="login-box-msg">星梦入口</p>
+				<p class="login-box-msg">学生管理系统</p>
 				<div class="form-group has-feedback">
 	            	<input type="text" name="userName" class="form-control" placeholder="请输入登陆账号" value="xzeng" >
 	            	<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -24,11 +23,11 @@
 	          	</div>
 				<div class="row">
 					<div class="col-xs-8">
-		              	<div class="checkbox icheck">
+		              	<!--<div class="checkbox icheck">
 		                	<label>
 		                  		<input type="checkbox" name="ifRemember" > Remember Me
 		                	</label>
-						</div>
+						</div> -->
 		            </div><!-- /.col -->
 		            <div class="col-xs-4">
 						<button type="submit" class="btn btn-primary btn-block btn-flat">登陆</button>

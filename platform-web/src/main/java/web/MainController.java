@@ -21,9 +21,9 @@ import util.CookieUtil;
 import web.annotation.PermessionLimit;
 import web.interceptor.PermissionInterceptor;
 
-//@Controller
+@Controller
 public class MainController {
-	@Autowired
+	//@Autowired
 	private UserManager userManager;
 	//@Autowired
 	private RedisManager redisManager;
