@@ -15,7 +15,7 @@ $(function() {
 	    "ordering": false,
 	    //"scrollX": true,	// X轴滚动条，取消自适应
 	    "columns": [
-	                { "data": 'userId'},
+	                { "data": 'userId',"visible" : false},
 	                { "data": 'realName'},
 	                { "data": 'phone'},
 	                { "data": 'email', "visible" : true},             
@@ -27,6 +27,8 @@ $(function() {
 	                							' phone="'+ row.phone +'" '+
 	                							' email="'+ row.email +'" '+
 	                							'>'+
+	                							'<button class="btn btn-warning btn-xs update" type="button">编辑</button>  ' +
+		                						'<button class="btn btn-danger btn-xs job_operate" type="job_del" type="button">删除</button> ' + 
 									'</p>';
 	                			
 	                			return html;
@@ -78,7 +80,7 @@ $(function() {
 			url = base_url + "/jobinfo/resume";
 		} else if ("job_del" == type) {
 			typeName = "删除";
-			url = base_url + "/jobinfo/remove";
+			url = base_url + "/student/remove";
 		} else if ("job_trigger" == type) {
 			typeName = "执行";
 			url = base_url + "/jobinfo/trigger";
@@ -86,7 +88,7 @@ $(function() {
 			return;
 		}
 		
-		var jobGroup = $(this).parent('p').attr("jobGroup");
+		var userId = $(this).parent('p').attr("userId");
 		var jobName = $(this).parent('p').attr("jobName");
 		
 		ComConfirm.show("确认" + typeName + "?", function(){
@@ -94,7 +96,7 @@ $(function() {
 				type : 'POST',
 				url : url,
 				data : {
-					"jobGroup" : jobGroup,
+					"userId" : userId,
 					"jobName"  : jobName
 				},
 				dataType : "json",
@@ -130,7 +132,7 @@ $(function() {
         rules : {  
         	jobName : {  
         		required : true ,
-                minlength: 4,
+                minlength: 1,
                 maxlength: 100,
                 myValid01:true
             },  
@@ -261,17 +263,10 @@ $(function() {
 	
 	// 更新
 	$("#job_list").on('click', '.update',function() {
-		$("#updateModal .form input[name='jobGroup']").val($(this).parent('p').attr("jobGroup"));
-		$("#updateModal .form input[name='jobName']").val($(this).parent('p').attr("jobName"));
-		$("#updateModal .form input[name='jobCron']").val($(this).parent('p').attr("jobCron"));
-		$("#updateModal .form input[name='jobDesc']").val($(this).parent('p').attr("jobDesc"));
-		$("#updateModal .form input[name='handler_address']").val($(this).parent('p').attr("handler_address"));
-		$("#updateModal .form input[name='handler_name']").val($(this).parent('p').attr("handler_name"));
-		$("#updateModal .form input[name='handler_params']").val($(this).parent('p').attr("handler_params"));
-		$("#updateModal .form input[name='author']").val($(this).parent('p').attr("author"));
-		$("#updateModal .form input[name='alarmEmail']").val($(this).parent('p').attr("alarmEmail"));
-		$("#updateModal .form input[name='alarmThreshold']").val($(this).parent('p').attr("alarmThreshold"));
-		$("#updateModal .form input[name='glueSwitch']").val($(this).parent('p').attr("glueSwitch"));
+		$("#updateModal .form input[name='userId']").val($(this).parent('p').attr("userId"));
+		$("#updateModal .form input[name='realName']").val($(this).parent('p').attr("realName"));
+		$("#updateModal .form input[name='phone']").val($(this).parent('p').attr("phone"));
+		$("#updateModal .form input[name='email']").val($(this).parent('p').attr("email"));
 		
 		// GLUE check
 		var $glueSwitch = $("#updateModal .form input[name='glueSwitch']");
@@ -361,7 +356,7 @@ $(function() {
             element.parent('div').append(error);  
         },
         submitHandler : function(form) {
-    		$.post(base_url + "/jobinfo/reschedule", $("#updateModal .form").serialize(), function(data, status) {
+    		$.post(base_url + "/student/update", $("#updateModal .form").serialize(), function(data, status) {
     			if (data.code == "200") {
     				ComAlert.show(1, "更新成功", function(){
     					window.location.reload();

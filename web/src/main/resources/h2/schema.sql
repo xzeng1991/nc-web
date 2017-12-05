@@ -2,18 +2,18 @@ DROP TABLE t_user IF EXISTS;
 
 CREATE TABLE t_user (
    user_id int NOT NULL,
-   user_name varchar(30) NOT NULL,
-   password varchar(30) NOT NULL,
-   user_type int NOT NULL,
-   locked int NOT NULL,
+   user_name varchar(32)  NULL,
+   password varchar(32)  NULL,
+   user_type int  NULL,
+   locked int  NULL,
    credit int NULL,
    real_name varchar(32) null,
-   phone varchar(32) not null,
+   phone varchar(32)  null,
    email varchar(32) null,
-   create_time timestamp NOT NULL,
-   create_user varchar(16) NOT NULL,
-   modify_time timestamp NOT NULL,
-   modify_user varchar(16) NOT NULL,
+   create_time timestamp  NULL,
+   create_user varchar(16)  NULL,
+   modify_time timestamp  NULL,
+   modify_user varchar(16)  NULL,
    PRIMARY KEY (user_id)
 );
 

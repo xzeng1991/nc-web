@@ -83,11 +83,6 @@
 			<version>1.12</version>
 		</dependency>
 		<dependency>
-			<groupId>commons-discovery</groupId>
-			<artifactId>commons-discovery</artifactId>
-			<version>0.5</version>
-		</dependency>
-		<dependency>
 			<groupId>dom4j</groupId>
 			<artifactId>dom4j</artifactId>
 			<version>1.6.1</version>
@@ -141,19 +136,6 @@
 		</dependency>
 		<!-- httpclient end -->
 
-		<!-- axis start -->
-		<dependency>
-			<groupId>org.apache.axis</groupId>
-			<artifactId>axis</artifactId>
-			<version>1.4</version>
-		</dependency>
-		<dependency>
-			<groupId>axis</groupId>
-			<artifactId>axis-jaxrpc</artifactId>
-			<version>1.4</version>
-		</dependency>
-		<!-- axis end -->
-
 		<!-- db start -->
 		<dependency>
 			<groupId>com.mchange</groupId>
@@ -184,16 +166,6 @@
 			<version>22.0</version>
 		</dependency>
 		<!-- guava end -->
-		<dependency>
-			<groupId>com.yunqi</groupId>
-			<artifactId>medical_dao</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc14</artifactId>
-			<version>14.0.0</version>
-		</dependency>
 	</dependencies>
 	<profiles>
 		<!-- 测试环境 -->

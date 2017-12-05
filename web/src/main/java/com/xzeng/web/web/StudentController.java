@@ -42,7 +42,20 @@ public class StudentController {
 	}
 
 	@RequestMapping("/add")
-	public @ResponseBody ReturnT<String> add() {
-		return ReturnT.FAIL;
+	public @ResponseBody ReturnT<String> add(UserInfo userInfo) {
+		userInfoDao.addUser(userInfo);
+		return ReturnT.SUCCESS;
+	}
+
+	@RequestMapping("/update")
+	public @ResponseBody ReturnT<String> update(UserInfo userInfo) {
+		userInfoDao.updateUser(userInfo);
+		return ReturnT.SUCCESS;
+	}
+
+	@RequestMapping("/remove")
+	public @ResponseBody ReturnT<String> remove(String userId) {
+		userInfoDao.removeUser(userId);
+		return ReturnT.SUCCESS;
 	}
 }
