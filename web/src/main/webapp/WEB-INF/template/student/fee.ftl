@@ -19,11 +19,11 @@
 	<div class="content-wrapper">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
-			<h1>管理中心<small>学员管理</small></h1>
+			<h1>管理中心<small>学员缴费管理</small></h1>
 			<!--
 			<ol class="breadcrumb">
-				<li><a><i class="fa fa-dashboard"></i>学员管理</a></li>
-				<li class="active">学员管理</li>
+				<li><a><i class="fa fa-dashboard"></i>学员缴费管理</a></li>
+				<li class="active">学员缴费管理</li>
 			</ol>
 			-->
 		</section>
@@ -39,16 +39,13 @@
 	              	</div>
 	            </div>
 	            <div class="col-xs-4">
-	              	<div class="input-group">
-	                	<span class="input-group-addon">手机</span>
-	                	<input type="text" class="form-control" id="phone" value="${phone}" autocomplete="on" >
-	              	</div>
+	              	
 	            </div>
 	            <div class="col-xs-2">
 	            	<button class="btn btn-block btn-info" id="searchBtn">搜索</button>
 	            </div>
 	            <div class="col-xs-2">
-	            	<button class="btn btn-block btn-success add" type="button">+新增学员</button>
+	            	<button class="btn btn-block btn-success add" type="button">+新增学员缴费</button>
 	            </div>
           	</div>
 	    	
@@ -56,7 +53,7 @@
 				<div class="col-xs-12">
 					<div class="box">
 			            <div class="box-header">
-			            	<h3 class="box-title">学员列表</h3>
+			            	<h3 class="box-title">学员缴费列表</h3>
 			            </div>
 			            <div class="box-body">
 			              	<table id="job_list" class="table table-bordered table-striped">
@@ -64,9 +61,9 @@
 					            	<tr>
 					            		<th name="user_id" >学员ID</th>
 					                	<th name="realName" >姓名</th>
-					                  	<th name="phone" >手机</th>
-					                  	<th name="email" >邮箱</th>
-					                  	<th>操作</th>
+					                <th name="phone" >手机</th>
+					                	<th name="email" >邮箱</th>
+					                	<th>操作</th>
 					                </tr>
 				                </thead>
 				                <tbody></tbody>
@@ -88,7 +85,7 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-            	<h4 class="modal-title" >新增学员</h4>
+            	<h4 class="modal-title" >新增学员缴费</h4>
          	</div>
          	<div class="modal-body">
 				<form class="form-horizontal form" role="form" >
@@ -121,7 +118,7 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-            	<h4 class="modal-title" >更新任务调度信息</h4>
+            	<h4 class="modal-title" >更新学员缴费</h4>
          	</div>
          	<div class="modal-body">
 				<form class="form-horizontal form" role="form" >

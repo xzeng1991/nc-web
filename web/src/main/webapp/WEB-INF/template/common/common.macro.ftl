@@ -80,8 +80,9 @@
 			<ul class="sidebar-menu">
 				<li class="header">常用模块</li>
 				<li class="nav-click" ><a href="${request.contextPath}/student/index"><i class="fa fa-circle-o text-red"></i> <span>学员管理</span></a></li>
-				<li class="nav-click" ><a href="${request.contextPath}/class/index"><i class="fa fa-circle-o text-yellow"></i><span>课程管理</span></a></li>
+				<!--<li class="nav-click" ><a href="${request.contextPath}/class/index"><i class="fa fa-circle-o text-yellow"></i><span>课程管理</span></a></li>
 				<li class="nav-click" ><a href="${request.contextPath}/fee/index"><i class="fa fa-circle-o text-yellow"></i><span>缴费管理</span></a></li>
+				-->
 				<li class="nav-click" ><a href="${request.contextPath}/record/index"><i class="fa fa-circle-o text-yellow"></i><span>上课记录</span></a></li>
 			</ul>
 		</section>

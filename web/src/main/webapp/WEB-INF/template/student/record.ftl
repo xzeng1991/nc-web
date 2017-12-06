@@ -19,11 +19,11 @@
 	<div class="content-wrapper">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
-			<h1>管理中心<small>学员管理</small></h1>
+			<h1>管理中心<small>学员上课情况管理</small></h1>
 			<!--
 			<ol class="breadcrumb">
-				<li><a><i class="fa fa-dashboard"></i>学员管理</a></li>
-				<li class="active">学员管理</li>
+				<li><a><i class="fa fa-dashboard"></i>上课情况管理</a></li>
+				<li class="active">上课情况管理</li>
 			</ol>
 			-->
 		</section>
@@ -35,20 +35,20 @@
 	    		<div class="col-xs-4">
 	              	<div class="input-group">
 	                	<span class="input-group-addon">学员姓名</span>
-                		<input type="text" class="form-control" id="realName" value="${realName}" autocomplete="on" >
+                		<input type="text" class="form-control" id="userName" value="${userName}" autocomplete="on" >
 	              	</div>
 	            </div>
 	            <div class="col-xs-4">
 	              	<div class="input-group">
-	                	<span class="input-group-addon">手机</span>
-	                	<input type="text" class="form-control" id="phone" value="${phone}" autocomplete="on" >
+	                	<span class="input-group-addon">课程名称</span>
+	                	<input type="text" class="form-control" id="className" value="${className}" autocomplete="on" >
 	              	</div>
 	            </div>
 	            <div class="col-xs-2">
 	            	<button class="btn btn-block btn-info" id="searchBtn">搜索</button>
 	            </div>
 	            <div class="col-xs-2">
-	            	<button class="btn btn-block btn-success add" type="button">+新增学员</button>
+	            	<button class="btn btn-block btn-success add" type="button">+新增上课记录</button>
 	            </div>
           	</div>
 	    	
@@ -56,18 +56,20 @@
 				<div class="col-xs-12">
 					<div class="box">
 			            <div class="box-header">
-			            	<h3 class="box-title">学员列表</h3>
+			            	<h3 class="box-title">学员上课情况列表</h3>
 			            </div>
 			            <div class="box-body">
 			              	<table id="job_list" class="table table-bordered table-striped">
 				                <thead>
 					            	<tr>
-					            		<th name="user_id" >学员ID</th>
-					                	<th name="realName" >姓名</th>
-					                  	<th name="phone" >手机</th>
-					                  	<th name="email" >邮箱</th>
-					                  	<th>操作</th>
-					                </tr>
+					            		<th name="recordId" >学员ID</th>
+					            		<th name="userId" >学员ID</th>
+					                	<th name="userName" >学员姓名</th>
+					                <th name="classId" >课程ID</th>
+					                <th name="className" >课程名称</th>
+					                <th name="createTime" >上课日期</th>
+					                	<th>操作</th>
+					            </tr>
 				                </thead>
 				                <tbody></tbody>
 				                <tfoot></tfoot>
@@ -88,21 +90,17 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-            	<h4 class="modal-title" >新增学员</h4>
+            	<h4 class="modal-title" >新增记录</h4>
          	</div>
          	<div class="modal-body">
 				<form class="form-horizontal form" role="form" >
 					<div class="form-group">
 						<label for="firstname" class="col-sm-2 control-label">学员姓名<font color="red">*</font></label>
-						<div class="col-sm-4"><input type="text" class="form-control" name="realName" placeholder="请输入“姓名”" minlength="4" maxlength="100" ></div>
-						<label for="firstname" class="col-sm-2 control-label">手机<font color="red">*</font></label>
-						<div class="col-sm-4"><input type="text" class="form-control" name="phone" placeholder="请输入“手机”" minlength="4" maxlength="100" ></div>
+						<div class="col-sm-4"><input type="text" class="form-control" name="userName" placeholder="请输入“姓名”" minlength="4" maxlength="100" ></div>
+						<label for="firstname" class="col-sm-2 control-label">课程<font color="red">*</font></label>
+						<div class="col-sm-4"><input type="text" class="form-control" name="className" placeholder="请输入“课程”" minlength="4" maxlength="100" ></div>
 					</div>
 					<div class="form-group">
-						<label for="lastname" class="col-sm-2 control-label">邮箱<font color="red">*</font></label>
-						<div class="col-sm-4"><input type="text" class="form-control" name="email" placeholder="请输入“email”" maxlength="100" ></div>
-						<label for="lastname" class="col-sm-2 control-label"><font color="red"></font></label>
-						<div class="col-sm-4"></div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-3 col-sm-6">
@@ -121,7 +119,7 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-            	<h4 class="modal-title" >更新任务调度信息</h4>
+            	<h4 class="modal-title" >更新上课情况</h4>
          	</div>
          	<div class="modal-body">
 				<form class="form-horizontal form" role="form" >
@@ -158,6 +156,6 @@
 <!-- daterangepicker -->
 <script src="${request.contextPath}/static/adminlte/plugins/daterangepicker/moment.min.js"></script>
 <script src="${request.contextPath}/static/adminlte/plugins/daterangepicker/daterangepicker.js"></script>
-<script src="${request.contextPath}/static/js/student.index.1.js"></script>
+<script src="${request.contextPath}/static/js/record.index.1.js"></script>
 </body>
 </html>

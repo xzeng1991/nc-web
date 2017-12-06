@@ -121,7 +121,7 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-            	<h4 class="modal-title" >更新任务调度信息</h4>
+            	<h4 class="modal-title" >更新学员信息</h4>
          	</div>
          	<div class="modal-body">
 				<form class="form-horizontal form" role="form" >
